@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-pop Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .facts-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+            padding: 20px;
+            width: 250px;
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>K-pop Facts</h1>
+    </header>
+    <main>
+        <div id="facts-container" class="facts-container"></div>
+    </main>
+    <script>
+        const kpopFacts = [
+            { "fact": "K-pop stands for Korean pop music and originated in South Korea." },
+            { "fact": "The genre incorporates a wide range of musical styles, including pop, hip-hop, R&B, and electronic dance music." },
+            { "fact": "K-pop idols often undergo rigorous training for several years before debuting." },
+            { "fact": "The first K-pop group to gain international fame was Seo Taiji and Boys in the early 1990s." },
+            { "fact": "K-pop groups often have a large number of members, with some groups like NCT having over 20 members." },
+            { "fact": "The fandoms of K-pop groups are known for their passionate support and often have unique names, such as ARMY for BTS and Blink for BLACKPINK." },
+            { "fact": "K-pop music videos are known for their high production values, elaborate choreography, and colorful visuals." },
+            { "fact": "K-pop has a significant global influence, with fans from all over the world and concerts held in various countries." },
+            { "fact": "The genre has contributed to the Korean Wave (Hallyu), which refers to the global popularity of South Korean culture." },
+            { "fact": "K-pop artists often engage with fans through social media platforms, enhancing their global reach and interaction." }
+        ];
+
+        const factsContainer = document.getElementById('facts-container');
+
+        kpopFacts.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `<p>${item.fact}</p><button onclick="toggleFact(${index})">Show/Hide</button>`;
+            factsContainer.appendChild(card);
+
+            // Use a timeout to create a staggered fade-in effect
+            setTimeout(() => {
+                card.classList.add('show');
+            }, index * 200); // Adjust the timing for staggered effect
+        });
+
+        function toggleFact(index) {
+            const card = factsContainer.children[index];
+            card.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
